@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Mode Colors */
+  --light-bg: hsl(0, 0%, 99%);
+  --light-elements: hsl(0, 100%, 100%);
+  --light-text: hsl(200, 15%, 8%);
+  --light-input: hsl(0, 0%, 50%);
+  
+  /* Dark Mode Colors */
+  --dark-bg: hsl(207, 26%, 17%);
+  --dark-elements: hsl(209, 23%, 22%);
+  --dark-text: hsl(0, 100%, 100%);
+  
+  /* Default to light mode */
+  --bg: var(--light-bg);
+  --elements: var(--light-elements);
+  --text: var(--light-text);
+  --input: var(--light-input);
+}
+
+[data-theme="dark"] {
+  --bg: var(--dark-bg);
+  --elements: var(--dark-elements);
+  --text: var(--dark-text);
+  --input: var(--dark-text);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--bg);
+  --color-elements: var(--elements);
+  --color-text: var(--text);
+  --color-input: var(--input);
+  --font-sans: var(--font-nunito-sans);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-nunito-sans), sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
 }
